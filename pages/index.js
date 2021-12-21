@@ -9,13 +9,8 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Image from "next/image";
-import InputLabel from "@mui/material/InputLabel";
-import InputBase from "@mui/material/InputBase";
-import FormControl from "@mui/material/FormControl";
-import { Stack } from "@mui/material";
-import { Divider } from "@material-ui/core";
-
 import FullWidthTabs from "./tabs";
+import ButtonBases from "./imgbtn";
 import entireHome from "../public/images/entire_home.png";
 import pets from "../public/images/pets.png";
 import uniqPlace from "../public/images/unique_place.png";
@@ -129,6 +124,7 @@ function NavBar({ children }) {
             rowSpacing={2}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
+            <ButtonBases />
             <Grid item xs={2}>
               <NextLink href="/entireHome" passHref>
                 <Link>
