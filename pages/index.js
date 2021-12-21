@@ -8,12 +8,9 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
-import Image from "next/image";
+
 import FullWidthTabs from "./tabs";
 import ButtonBases from "./imgbtn";
-import entireHome from "../public/images/entire_home.png";
-import pets from "../public/images/pets.png";
-import uniqPlace from "../public/images/unique_place.png";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -114,10 +111,11 @@ function NavBar({ children }) {
             </Item>
           </Grid>
           <Grid
+            style={{ marginLeft: 400 }}
             sx={{
               display: "flex",
               justifyContent: "center",
-              p: 1,
+              p: 5,
               m: 1,
             }}
             container
@@ -125,84 +123,6 @@ function NavBar({ children }) {
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
             <ButtonBases />
-            <Grid item xs={2}>
-              <NextLink href="/entireHome" passHref>
-                <Link>
-                  <Image
-                    className={classes.square}
-                    src={entireHome}
-                    alt="EntireHome"
-                    width={500}
-                    height={400}
-                  />
-                </Link>
-              </NextLink>
-              <Grid
-                style={{ fontSize: 25 }}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  p: 1,
-                }}
-                container
-                rowSpacing={2}
-                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-              >
-                Entire Homes
-              </Grid>
-            </Grid>
-            <Grid item xs={2}>
-              <NextLink href="/pets" passHref>
-                <Link>
-                  <Image
-                    className={classes.square}
-                    src={pets}
-                    alt="Pets"
-                    width={500}
-                    height={400}
-                  />
-                </Link>
-              </NextLink>
-              <Grid
-                style={{ fontSize: 25 }}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  p: 1,
-                }}
-                container
-                rowSpacing={2}
-                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-              >
-                Pets Allowed
-              </Grid>
-            </Grid>
-            <Grid item xs={2}>
-              <NextLink href="/uniqPlace" passHref>
-                <Link>
-                  <Image
-                    className={classes.square}
-                    src={uniqPlace}
-                    alt="UniquePlace"
-                    width={500}
-                    height={400}
-                  />
-                </Link>
-              </NextLink>
-              <Grid
-                style={{ fontSize: 25 }}
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  p: 1,
-                }}
-                container
-                rowSpacing={2}
-                columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-              >
-                Unique Places
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
       </Box>
