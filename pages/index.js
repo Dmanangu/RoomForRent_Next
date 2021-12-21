@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
 import {
   Link,
@@ -24,6 +24,7 @@ import uniqPlace from "../public/images/unique_place.png";
 import { Menu, MenuItem } from "@material-ui/core";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import Store from "../utils/Store";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -43,6 +44,8 @@ const Buttons = styled(Paper)(({ theme }) => ({
 }));
 
 function NavBar({ children }) {
+  // const { state, dispatch } = useContext(Store);
+  // const { userInfo } = state;
   const classes = useStyles();
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -87,7 +90,7 @@ function NavBar({ children }) {
             </Link>
           </NextLink>
           {/* This change Login button into the user Name  */}
-          {userInfo ? (
+          {/* {userInfo ? (
             <>
               <Button
                 aria-controls="simple-menu"
@@ -113,7 +116,7 @@ function NavBar({ children }) {
             <NextLink href="/login" passHref>
               <Link>Login</Link>
             </NextLink>
-          )}
+          )} */}
         </Toolbar>
       </AppBar>
 
