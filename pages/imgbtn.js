@@ -6,7 +6,7 @@ import entireHome from "../public/images/entire_home.png";
 
 const images = [
   {
-    url: "/static/images/image-list/entire_home.png",
+    url: "/public/images/entire_home.png",
     title: "Entire Homes",
     width: "33.33%",
   },
