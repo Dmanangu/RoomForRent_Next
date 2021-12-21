@@ -5,10 +5,10 @@ const useStyles = makeStyles({
     backgroundColor: "#0f7db0",
     "& a": {
       color: "#ffffff",
-      marginLeft: 10,
+      marginLeft: 80,
     },
   },
-  brand: {
+  title: {
     fontWeight: "bold",
     fontSize: " 1.5rem",
   },
@@ -18,8 +18,11 @@ const useStyles = makeStyles({
   sizePlus: {
     fontSize: "20px",
   },
+  square: {
+    borderRadius: 20,
+  },
   main: {
-    minHeight: "80vh",
+    minHeight: "25vh",
     minWidth: "80vw",
   },
   footer: {
