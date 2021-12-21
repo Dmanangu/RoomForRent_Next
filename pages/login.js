@@ -7,16 +7,38 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React from "react";
+import React, { useContext, useState } from "react";
 import useStyles from "../utils/style";
 import NextLink from "next/link";
+import axios from "axios";
+import Store from "../utils/Store";
+import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 export default function Login() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const classes = useStyles();
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      // Update this into FireStore Users -> email and password
+      const { data } = await axios.post("/api/users/login", {
+        email,
+        password,
+      });
+      dispatch({ type: "USER_LOGIN", payload: data });
+      Cookies.set("userInfo", data);
+      alert("success");
+    } catch (err) {
+      alert(err.response.data ? err.response.data.message : err.message);
+    }
+  };
   return (
     <div title="Login">
       <Container className={classes.form}>
-        <form>
+        <form onSubmit={submitHandler}>
           <Typography component="h4" variant="h4">
             Login
           </Typography>
@@ -28,6 +50,7 @@ export default function Login() {
                 id="email"
                 label="Email"
                 inputProps={{ type: "email" }}
+                onChange={(e) => setEmail(e.target.value)}
               ></TextField>
             </ListItem>
 
@@ -38,6 +61,7 @@ export default function Login() {
                 id="password"
                 label="Password"
                 inputProps={{ type: "password" }}
+                onChange={(e) => setPassword(e.target.value)}
               ></TextField>
             </ListItem>
             <ListItem>
