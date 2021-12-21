@@ -45,7 +45,7 @@ const useStyles = makeStyles({
   },
   form: {
     width: "100%",
-    maxWidth: 800,
+    maxWidth: 600,
     margin: "0 auto",
   },
   navbarButton: {
@@ -60,6 +60,9 @@ const useStyles = makeStyles({
   },
   fullWidth: {
     width: "100%",
+  },
+  textCenter: {
+    textAlign: "center",
   },
 });
 export default useStyles;
