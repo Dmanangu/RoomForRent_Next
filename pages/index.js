@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
 import { Link, AppBar, Container, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/Link";
@@ -11,6 +11,13 @@ import Box from "@mui/material/Box";
 
 import FullWidthTabs from "./tabs";
 import ButtonBases from "./imgbtn";
+import entireHome from "../public/images/entire_home.png";
+import pets from "../public/images/pets.png";
+import uniqPlace from "../public/images/unique_place.png";
+import { Menu, MenuItem } from "@material-ui/core";
+import Cookies from "js-cookie";
+import { useRouter } from "next/router";
+import Store from "../utils/Store";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -30,6 +37,8 @@ const Buttons = styled(Paper)(({ theme }) => ({
 }));
 
 function NavBar({ children }) {
+  // const { state, dispatch } = useContext(Store);
+  // const { userInfo } = state;
   const classes = useStyles();
   return (
     <div>
@@ -59,11 +68,34 @@ function NavBar({ children }) {
               <Typography>Become a host</Typography>
             </Link>
           </NextLink>
-          <NextLink href="/login" passHref>
-            <Link>
-              <Typography>User Login</Typography>
-            </Link>
-          </NextLink>
+          {/* This change Login button into the user Name  */}
+          {/* {userInfo ? (
+            <>
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={loginClickHandler}
+                className={classes.navbarButton}
+              >
+                {userInfo.name}
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={loginMenuCloseHandler}
+              >
+                <MenuItem onClick={loginMenuCloseHandler}>Profile</MenuItem>
+                <MenuItem onClick={loginMenuCloseHandler}>My Account</MenuItem>
+                <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <NextLink href="/login" passHref>
+              <Link>Login</Link>
+            </NextLink>
+          )} */}
         </Toolbar>
       </AppBar>
 
