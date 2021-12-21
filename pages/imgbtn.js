@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import ButtonBase from "@mui/material/ButtonBase";
 import Typography from "@mui/material/Typography";
+import Image from "next/image";
+import NextLink from "next/link";
 
 const images = [
   {
@@ -53,7 +55,7 @@ const ImageSrc = styled("span")({
   backgroundPosition: "center 40%",
 });
 
-const Image = styled("span")(({ theme }) => ({
+const Images = styled("span")(({ theme }) => ({
   position: "absolute",
   left: 0,
   right: 0,
@@ -101,22 +103,24 @@ export default function ButtonBases() {
         >
           <ImageSrc style={{ backgroundImage: `url(${image.url})` }} />
           <ImageBackdrop className="MuiImageBackdrop-root" />
-          <Image>
-            <Typography
-              component="span"
-              variant="subtitle1"
-              color="inherit"
-              sx={{
-                position: "relative",
-                p: 4,
-                pt: 2,
-                pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
-              }}
-            >
-              {image.title}
-              <ImageMarked className="MuiImageMarked-root" />
-            </Typography>
-          </Image>
+          <NextLink href="/lobby" passHref>
+            <Images>
+              <Typography
+                component="span"
+                variant="subtitle1"
+                color="inherit"
+                sx={{
+                  position: "relative",
+                  p: 4,
+                  pt: 2,
+                  pb: (theme) => `calc(${theme.spacing(1)} + 6px)`,
+                }}
+              >
+                {image.title}
+                <ImageMarked className="MuiImageMarked-root" />
+              </Typography>
+            </Images>
+          </NextLink>
         </ImageButton>
       ))}
     </Box>

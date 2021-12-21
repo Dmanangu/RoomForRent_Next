@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
   main: {
     minHeight: "25vh",
-    minWidth: "80vw",
+    minWidth: "100%",
   },
   footer: {
     textAlign: "center",
