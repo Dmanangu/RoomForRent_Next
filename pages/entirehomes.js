@@ -10,12 +10,13 @@ import {
 } from "@material-ui/core";
 import { grid } from "@mui/system";
 import Layout from "../component/Layout";
+import eData from "../component/edata";
 
-function EntireHomes() {
+export default function EntireHomes() {
   return (
     <Layout>
       <Grid container spacing={3}>
-        {edata.ehomes.map((ehomes) => (
+        {eData.ehomes.map((ehomes) => (
           <Grid item md={4} key={ehomes.name}>
             <Card>
               <CardActionArea>

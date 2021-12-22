@@ -23,4 +23,4 @@ const eData = {
     },
   ],
 };
-export default edata;
+export default eData;
