@@ -4,11 +4,6 @@ import { Link, AppBar, Container, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/Link";
 import useStyles from "../utils/style";
 
-import { styled } from "@mui/material/styles";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-
 function NavBar({ children }) {
   // const { state, dispatch } = useContext(Store);
   // const { userInfo } = state;
@@ -78,9 +73,9 @@ function NavBar({ children }) {
       </AppBar>
 
       <Container className={classes.main}>{children}</Container>
-      <footer className={classes.footer}>
+      {/* <footer className={classes.footer}>
         <Typography>All rights reserved. Room For Rent 2021-2022</Typography>
-      </footer>
+      </footer> */}
     </div>
   );
 }
