@@ -22,9 +22,11 @@ function NavBar({ children }) {
         <Toolbar className={classes.grow}>
           <Typography className={classes.title}>Room For Rent</Typography>
           <div className={classes.grow}></div>
-          <Link>
-            <Typography>Home</Typography>
-          </Link>
+          <NextLink href="/" passHref>
+            <Link>
+              <Typography>Home</Typography>
+            </Link>
+          </NextLink>
           <NextLink href="/about" passHref>
             <Link>
               <Typography>About</Typography>
