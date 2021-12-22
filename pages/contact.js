@@ -3,18 +3,12 @@ import React from "react";
 import NextLink from "next/link";
 import Styles from "../utils/style";
 import useStyles from "../utils/style";
+import Layout from "../component/Layout";
 
 function Contact() {
   const classes = useStyles();
   return (
-    <div>
-      <NextLink href="/" passHref>
-        <Link>
-          <Typography variant="h4" component="h4">
-            Back To Home
-          </Typography>
-        </Link>
-      </NextLink>
+    <Layout>
       <Container>
         <Typography variant="h2" component="h2" className={classes.textCenter}>
           Contact Us
@@ -33,7 +27,7 @@ function Contact() {
           Lawrence Felicianos
         </Typography>
       </Container>
-    </div>
+    </Layout>
   );
 }
 

@@ -14,6 +14,7 @@ import axios from "axios";
 import Store from "../utils/Store";
 import { useRouter } from "next/router";
 import Cookies from "js-cookie";
+import Layout from "../component/Layout";
 
 export default function Login() {
   const router = useRouter();
@@ -36,7 +37,7 @@ export default function Login() {
     }
   };
   return (
-    <div title="Login">
+    <Layout title="Login">
       <Container className={classes.form}>
         <form onSubmit={submitHandler}>
           <Typography component="h4" variant="h4">
@@ -83,6 +84,6 @@ export default function Login() {
           </List>
         </form>
       </Container>
-    </div>
+    </Layout>
   );
 }

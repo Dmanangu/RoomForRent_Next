@@ -41,6 +41,9 @@ function NavBar({ children }) {
               <Typography>Become a host</Typography>
             </Link>
           </NextLink>
+          <NextLink href="/login" passHref>
+            <Link>Login</Link>
+          </NextLink>
           {/* This change Login button into the user Name  */}
           {/* {userInfo ? (
               <>
