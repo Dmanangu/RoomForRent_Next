@@ -1,7 +1,5 @@
-import { Button, Container, Link, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React from "react";
-import NextLink from "next/link";
-import Styles from "../utils/style";
 import useStyles from "../utils/style";
 import Layout from "../component/Layout";
 
@@ -15,9 +13,10 @@ function About() {
         </Typography>
         <hr />
         <Typography variant="h4" component="h4" className={classes.textCenter}>
-          Room For Rent was created to aid the citizens of Bustos Bulacan in
-          looking for a place to rent. It also allows the user to become a host
-          of this platform so that they can earn money in return.
+          Room For Rent web application was built to help the citizens of Bustos
+          Bulacan to find easy and affordable renting place. Also, it provides
+          services to help the host, host their place without problems and earn
+          money in return.
         </Typography>
       </Container>
     </Layout>
