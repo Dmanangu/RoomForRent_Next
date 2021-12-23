@@ -3,10 +3,10 @@ const edata = {
     {
       name: "Full House",
       category: "eHomes",
-      slug: "huge-home",
+      slug: "full-house",
       image: "https://i.ibb.co/5rDfLMC/ehomes1.jpg",
       pets: "Pets are not Allowed in this House",
-      rating: 4.5,
+      rating: [4.5, " stars ", " 10 Reviews"],
       description: "A cozy and wonderful home",
       price: 5000,
     },
@@ -14,6 +14,7 @@ const edata = {
     {
       name: "3rd Home",
       category: "eHomes",
+      slug: "third-home",
       image: "https://i.ibb.co/hsk9zPJ/ehomes3.jpg",
       pets: "Pets are not Allowed in this House",
       rating: 4.5,
@@ -22,6 +23,7 @@ const edata = {
     },
     {
       name: "2nd Home",
+      slug: "second-home",
       category: "eHomes",
       image: "https://i.ibb.co/fkdbSxX/ehomes2.jpg",
       pets: "Pets are not Allowed in this House",
