@@ -33,8 +33,8 @@ function ProductScreen() {
       <Typography variant="h4" textAlign={"center"} marginBottom={3}>
         {product.name}
       </Typography>
-      <Grid container spacing={1}>
-        <Grid item md={4} xs={12}>
+      <Grid container spacing={1} marginLeft={3}>
+        <Grid item md={5} xs={12}>
           <Image
             src={product.image}
             alt={product.name}
