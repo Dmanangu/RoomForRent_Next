@@ -1,7 +1,5 @@
-import { Button, Container, Link, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import React from "react";
-import NextLink from "next/link";
-import Styles from "../utils/style";
 import useStyles from "../utils/style";
 import Layout from "../component/Layout";
 
