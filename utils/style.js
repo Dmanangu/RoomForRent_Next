@@ -32,6 +32,11 @@ const useStyles = makeStyles({
     gridColumn: 2,
     gridRow: 1,
   },
+  rightSide: {
+    backgroundColor: "#f7f7f7",
+    gridColumn: 2,
+    gridRow: 1,
+  },
   title: {
     fontWeight: "bold",
     fontSize: " 1.5rem",
@@ -47,8 +52,9 @@ const useStyles = makeStyles({
     borderRadius: 20,
   },
   main: {
-    minHeight: "25vh",
-    minWidth: "100%",
+    minHeight: "85vh", //updated this so that the footer stays at the lowest middle part
+    minWidth: "80vw",
+    maxWidth: "100%",
   },
   footer: {
     textAlign: "center",
@@ -88,6 +94,9 @@ const useStyles = makeStyles({
   },
   textCenter: {
     textAlign: "center",
+  },
+  centerCards: {
+    marginLeft: "7%",
   },
 });
 export default useStyles;

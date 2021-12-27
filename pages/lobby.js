@@ -1,43 +1,20 @@
-import {
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-  Button,
-} from "@material-ui/core";
-import Grid from "@mui/material/Grid";
+import { Typography } from "@mui/material";
+import React from "react";
 import Layout from "../component/Layout";
-import Data from "../component/data";
+import Products from "../component/Products";
+import useStyles from "../utils/style";
 
-export default function EntireHomes() {
+function Lobby() {
+  const classes = useStyles();
   return (
     <Layout>
-      <Grid container spacing={3}>
-        {Data.Product.map((Product) => (
-          <Grid item md={4} key={Product.name}>
-            <Card>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  image={Product.image}
-                  title={Product.name}
-                ></CardMedia>
-                <CardContent>
-                  <Typography>{Product.name}</Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Typography>{Product.rating}</Typography>
-                <Button size="small" color="primary">
-                  Ratings
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
+      <Typography variant="h4" className={classes.footer} marginTop={3}>
+        Available Homes
+      </Typography>
+      <div className={classes.centerCards}>
+        <Products />
+      </div>
     </Layout>
   );
 }
+export default Lobby;

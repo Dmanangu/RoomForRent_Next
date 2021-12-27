@@ -4,7 +4,7 @@ import { Link, AppBar, Container, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/Link";
 import useStyles from "../utils/style";
 
-function NavBar({ children }) {
+function Layout({ children }) {
   // const { state, dispatch } = useContext(Store);
   // const { userInfo } = state;
   const classes = useStyles();
@@ -36,6 +36,11 @@ function NavBar({ children }) {
           <NextLink href="/host" passHref>
             <Link>
               <Typography>Become a host</Typography>
+            </Link>
+          </NextLink>
+          <NextLink href="/reservations" passHref>
+            <Link>
+              <Typography>Reservations</Typography>
             </Link>
           </NextLink>
           <NextLink href="/login" passHref>
@@ -73,11 +78,11 @@ function NavBar({ children }) {
       </AppBar>
 
       <Container className={classes.main}>{children}</Container>
-      {/* <footer className={classes.footer}>
+      <footer className={classes.footer}>
         <Typography>All rights reserved. Room For Rent 2021-2022</Typography>
-      </footer> */}
+      </footer>
     </div>
   );
 }
 
-export default NavBar;
+export default Layout;
