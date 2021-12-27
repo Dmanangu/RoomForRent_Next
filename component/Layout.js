@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import Head from "next/head";
 import { Link, AppBar, Container, Toolbar, Typography } from "@mui/material";
 import NextLink from "next/Link";

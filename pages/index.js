@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 
-import useStyles from "../utils/style";
+// import useStyles from "../utils/style";
 
 import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Grid";
@@ -13,25 +13,16 @@ import Layout from "../component/Layout";
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
-  padding: theme.spacing(1),
   textAlign: "center",
   background: "linear-gradient(#0dc5e1, #1795c5)",
   color: theme.palette.text.secondary,
   padding: 150,
 }));
 
-const Buttons = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body3,
-  padding: theme.spacing(3),
-  textAlign: "center",
-  borderRadius: 20,
-  color: theme.palette.text.secondary,
-}));
-
-function Home({ children }) {
+function Home() {
   // const { state, dispatch } = useContext(Store);
   // const { userInfo } = state;
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <Layout>
       <Box sx={{ width: "100%" }}>

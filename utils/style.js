@@ -8,9 +8,34 @@ const useStyles = makeStyles({
       marginLeft: 80,
     },
   },
+  nav: {
+    backgroundColor: "Black",
+    "& a": {
+      color: "#ffffff",
+      marginLeft: 80,
+    },
+  },
+  splitScreen: {
+    height: "100vh",
+    display: "grid",
+    gridTemplateColumns: "1fr 1fr",
+    gridTemplateRows: "1fr",
+  },
+  leftPane: {
+    color: "White",
+    backgroundColor: "Black",
+    gridColumn: 1,
+    gridRow: 1,
+  },
+  rightPane: {
+    backgroundColor: "Black",
+    gridColumn: 2,
+    gridRow: 1,
+  },
   title: {
     fontWeight: "bold",
     fontSize: " 1.5rem",
+    color: "#ffffff",
   },
   grow: {
     flexGrow: 1,

@@ -4,35 +4,34 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Grid,
   Typography,
   Button,
 } from "@material-ui/core";
-import { grid } from "@mui/system";
+import Grid from "@mui/material/Grid";
 import Layout from "../component/Layout";
-import eData from "../component/edata";
+import Data from "../component/data";
 
 export default function EntireHomes() {
   return (
     <Layout>
       <Grid container spacing={3}>
-        {eData.ehomes.map((ehomes) => (
-          <Grid item md={4} key={ehomes.name}>
+        {Data.Product.map((Product) => (
+          <Grid item md={4} key={Product.name}>
             <Card>
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  image={ehomes.image}
-                  title={ehomes.name}
+                  image={Product.image}
+                  title={Product.name}
                 ></CardMedia>
                 <CardContent>
-                  <Typography>{ehomes.name}</Typography>
+                  <Typography>{Product.name}</Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Typography>{ehomes.rating}</Typography>
+                <Typography>{Product.rating}</Typography>
                 <Button size="small" color="primary">
-                  Pick
+                  Ratings
                 </Button>
               </CardActions>
             </Card>
