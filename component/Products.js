@@ -48,9 +48,6 @@ function Products() {
                 <strong>₱{product.price}</strong>
               </Typography>
             </CardActions>
-            <Button size="small" color="primary" fullWidth variant="contained">
-              Book Now
-            </Button>
           </Card>
         </Grid>
       ))}
