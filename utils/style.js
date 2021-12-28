@@ -98,5 +98,12 @@ const useStyles = makeStyles({
   centerCards: {
     marginLeft: "7%",
   },
+  guestInput: {
+    width: 50,
+    padding: 5,
+    text: "large",
+    outline: "none",
+    textColor: "red",
+  },
 });
 export default useStyles;

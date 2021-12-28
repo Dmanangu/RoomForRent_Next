@@ -1,21 +1,32 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import data from "../../component/data";
 import Layout from "../../component/Layout";
 import useStyles from "../../utils/style";
 import NextLink from "next/link";
-import {
-  Button,
-  Card,
-  Grid,
-  Link,
-  List,
-  ListItem,
-  Typography,
-} from "@mui/material";
+import { Button, Grid, Link, List, ListItem, Typography } from "@mui/material";
 import Image from "next/image";
+import "react-date-range/dist/styles.css"; //main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
+import { Box } from "@mui/system";
 
 function ProductScreen() {
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [noOfGuest, setNoOfGuest] = useState(1);
+
+  const handleSelect = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
   const classes = useStyles();
   const router = useRouter();
   const { slug } = router.query;
@@ -34,7 +45,7 @@ function ProductScreen() {
         {product.name}
       </Typography>
       <Grid container spacing={1} marginLeft={3}>
-        <Grid item md={5} xs={12}>
+        <Grid item md={4} xs={12}>
           <Image
             src={product.image}
             alt={product.name}
@@ -53,7 +64,7 @@ function ProductScreen() {
               {ImageList.map(({_key, asset}, image) => <Image key={_key} identifier="image" image={assets}/>)}
           </div> */}
         </Grid>
-        <Grid item md={3} xs={12}>
+        <Grid item md={2.5} xs={10}>
           <List>
             <ListItem>
               <Typography>Category: {product.category}</Typography>
@@ -69,26 +80,52 @@ function ProductScreen() {
             </ListItem>
           </List>
         </Grid>
-        <Grid item md={3} xs={6}>
-          <Card>
+        <Grid xs={7} md={4}>
+          <Box mt={3}>
             <List>
               <ListItem>
                 <Grid container>
                   <Grid item xs={6}>
-                    <Typography>Price</Typography>
+                    <Typography>
+                      <strong>Price</strong>
+                    </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography>₱{product.price} /night</Typography>
+                    <Typography>
+                      <strong>₱{product.price}</strong> /night
+                    </Typography>
+                  </Grid>
+                  <Grid>
+                    <DateRangePicker
+                      ranges={[selectionRange]}
+                      minDate={new Date()}
+                      rangeColors={"#fd5b61"} //color of Airbnb but it is not activating
+                      onChange={handleSelect}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography component="h5">Number of Guest</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <input
+                      type="number"
+                      value={noOfGuest}
+                      min={1}
+                      onChange={(e) => setNoOfGuest(e.target.value)}
+                      className={classes.guestInput}
+                    />
                   </Grid>
                 </Grid>
               </ListItem>
               <ListItem>
-                <Button fullWidth variant="contained" color="primary">
-                  Reserve Now
-                </Button>
+                <NextLink href={"/payment"}>
+                  <Button fullWidth variant="contained" color="primary">
+                    Reserve Now
+                  </Button>
+                </NextLink>
               </ListItem>
             </List>
-          </Card>
+          </Box>
         </Grid>
       </Grid>
     </Layout>
