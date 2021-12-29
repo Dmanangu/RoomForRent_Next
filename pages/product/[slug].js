@@ -4,7 +4,15 @@ import data from "../../component/data";
 import Layout from "../../component/Layout";
 import useStyles from "../../utils/style";
 import NextLink from "next/link";
-import { Button, Grid, Link, List, ListItem, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Link,
+  List,
+  ListItem,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
 import "react-date-range/dist/styles.css"; //main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -15,7 +23,7 @@ function ProductScreen() {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuest, setNoOfGuest] = useState(1);
-
+  const [noOfDays, setNoOfDays] = useState(1);
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
@@ -104,7 +112,7 @@ function ProductScreen() {
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography component="h5">Number of Guest</Typography>
+                    <Typography component="h5">Number of Guest:</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <input
@@ -114,6 +122,56 @@ function ProductScreen() {
                       onChange={(e) => setNoOfGuest(e.target.value)}
                       className={classes.guestInput}
                     />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography component="h5">Number of Days:</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <input
+                      type="number"
+                      value={noOfDays}
+                      min={1}
+                      onChange={(e) => setNoOfDays(e.target.value)}
+                      className={classes.guestInput}
+                    />
+                  </Grid>
+                  <Divider />
+                  <Grid item xs={6}>
+                    <Typography component="h3" variant="h5">
+                      <strong>Rental Cost: </strong>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography>₱{product.price * noOfDays} /night</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography component="h3" variant="h5">
+                      <strong>Cleaning Cost: </strong>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography>₱{product.price * noOfDays * 0.05}</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography component="h3" variant="h5">
+                      <strong>Service Fee: </strong>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography>₱{product.price * noOfDays * 0.08}</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography component="h3" variant="h5">
+                      <strong>Total Cost: </strong>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <Typography>
+                      ₱
+                      {product.price * noOfDays +
+                        product.price * noOfDays * 0.05 +
+                        product.price * noOfDays * 0.08}
+                    </Typography>
                   </Grid>
                 </Grid>
               </ListItem>
