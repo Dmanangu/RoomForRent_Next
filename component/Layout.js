@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import NextLink from "next/Link";
 import useStyles from "../utils/style";
+import { auth, googleAuthProvider } from "../database/firebase";
 // import { useRouter } from "next/router";
 // import Store from "../utils/Store";
 // import Cookies from "js-cookie";
@@ -34,7 +35,6 @@ function Layout({ children }) {
   //   setAnchorEl(null);
   //   dispatch({ type: "USER_LOGOUT" });
   //   Cookies.remove("userInfo");
-  //   Cookies.remove("cartItems");
   //   router.push("/");
   // };
   const classes = useStyles();
@@ -93,7 +93,8 @@ function Layout({ children }) {
                 <MenuItem onCLick={(e) => loginMenuCloseHandler(e, "/profile")}>
                   Profile
                 </MenuItem>
-                <MenuItem onCLick={logoutClickHandler}>Logout</MenuItem>
+                <MenuItem onCLick={logoutClickHandler}><SignOutButton/></MenuItem>
+                
               </Menu>
             </>
           ) : (
@@ -113,3 +114,7 @@ function Layout({ children }) {
 }
 
 export default Layout;
+
+function SignOutButton() {
+  return <Button onClick={() => auth.signOut()}>Logout</Button>;
+}

@@ -16,6 +16,9 @@ import useStyles from "../utils/style";
 import Cookies from "js-cookie";
 import { Controller, useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
+import { auth, googleAuthProvider } from "../database/firebase";
+import googleIcon from "../public/images/google-icon.png";
+import Image from "next/image";
 
 export default function Login() {
   const {
@@ -52,6 +55,9 @@ export default function Login() {
       );
     }
   };
+  const user = null;
+  const username = null;
+
   return (
     <Layout title="Login">
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
@@ -129,7 +135,21 @@ export default function Login() {
             </NextLink>
           </ListItem>
         </List>
+        <SignInButton />
       </form>
     </Layout>
+  );
+}
+
+function SignInButton() {
+  const signInWithGoogle = async () => {
+    await auth.signInWithPopup(googleAuthProvider);
+  };
+
+  return (
+    <Button onClick={signInWithGoogle} variant="outlined">
+      <Image src={googleIcon} alt="no image" height={30} width={30} />
+      Sign in with Google{" "}
+    </Button>
   );
 }
