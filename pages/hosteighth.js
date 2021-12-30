@@ -90,7 +90,7 @@ function HostEighth() {
                     position: "absolute",
                   }}
                 >
-                  Longtitude
+                  Longitude
                 </Grid>
                 <Grid
                   item
@@ -154,6 +154,7 @@ function HostEighth() {
                     marginTop: 20,
                     position: "absolute",
                     marginLeft: 1100,
+                    boxShadow: "2px 2px 5px 2px",
                   }}
                 >
                   <Map />
