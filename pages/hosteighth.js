@@ -7,15 +7,11 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import Map from "./hosteighthmap";
-import dynamic from "next/dynamic";
+
+import Map from "../component/map";
 
 function HostEighth() {
   const classes = useStyles();
-  const Map = dynamic(() => import("./hosteighthmap"), {
-    loading: () => "Loading...",
-    ssr: false,
-  });
 
   return (
     <div>
@@ -110,6 +106,26 @@ function HostEighth() {
                     variant="outlined"
                   />
                 </Grid>
+                <Grid
+                  item
+                  style={{
+                    marginTop: 300,
+                    position: "absolute",
+                  }}
+                >
+                  <Button
+                    variant="contained"
+                    style={{
+                      fontSize: 17,
+                      maxWidth: "150px",
+                      maxHeight: "80px",
+                      minWidth: "90px",
+                      minHeight: "65px",
+                    }}
+                  >
+                    Save
+                  </Button>
+                </Grid>
               </Grid>
             </Box>
           </Grid>
@@ -135,12 +151,11 @@ function HostEighth() {
                 <Grid
                   item
                   style={{
-                    marginTop: 200,
+                    marginTop: 20,
                     position: "absolute",
-                    marginLeft: 865,
+                    marginLeft: 1100,
                   }}
                 >
-                  Maps
                   <Map />
                 </Grid>
 

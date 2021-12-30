@@ -103,7 +103,7 @@ function HostSeventh() {
                     marginLeft: 400,
                   }}
                 >
-                  Upload Images
+                  Upload Image
                   <Container
                     style={{
                       minWidth: 100,
