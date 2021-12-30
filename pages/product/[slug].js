@@ -24,6 +24,7 @@ function ProductScreen() {
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuest, setNoOfGuest] = useState(1);
   const [noOfDays, setNoOfDays] = useState(1);
+
   const handleSelect = (ranges) => {
     setStartDate(ranges.selection.startDate);
     setEndDate(ranges.selection.endDate);
@@ -42,6 +43,11 @@ function ProductScreen() {
   if (!product) {
     return <div> This Place is no Longer Available</div>;
   }
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; //123.456 -> 123.46
+  const rentalCost = round2(product.price * noOfDays);
+  const cleaningCost = round2(rentalCost * 0.05);
+  const serviceFee = round2(rentalCost * 0.08);
+  const totalPrice = round2(rentalCost + serviceFee + cleaningCost);
   return (
     <Layout title={product.name}>
       <div className={classes.section}>
@@ -142,7 +148,7 @@ function ProductScreen() {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography>₱{product.price * noOfDays} /night</Typography>
+                    <Typography>₱{rentalCost} /night</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography component="h3" variant="h5">
@@ -158,7 +164,7 @@ function ProductScreen() {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography>₱{product.price * noOfDays * 0.08}</Typography>
+                    <Typography>₱{serviceFee}</Typography>
                   </Grid>
                   <Grid item xs={6}>
                     <Typography component="h3" variant="h5">
@@ -166,12 +172,7 @@ function ProductScreen() {
                     </Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <Typography>
-                      ₱
-                      {product.price * noOfDays +
-                        product.price * noOfDays * 0.05 +
-                        product.price * noOfDays * 0.08}
-                    </Typography>
+                    <Typography>₱{totalPrice}</Typography>
                   </Grid>
                 </Grid>
               </ListItem>
