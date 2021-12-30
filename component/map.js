@@ -9,7 +9,7 @@ function Map() {
     zoom: 13.5,
     width: 900,
     height: 900,
-    pitch: 50,
+    pitch: 70,
   });
 
   return (
