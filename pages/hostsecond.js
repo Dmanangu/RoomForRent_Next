@@ -7,8 +7,19 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  RENTALUNIT_HOST_BTN,
+  LOFT_HOST_BTN,
+  CONDOMINIUM_HOST_BTN,
+} from "../redux/actionTypes";
+
 function HostSecond() {
   const classes = useStyles();
+  const { rentalunitValue } = useSelector((state) => state.sixthbtn);
+  const { loftValue } = useSelector((state) => state.seventhbtn);
+  const { condominiumValue } = useSelector((state) => state.eightbtn);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -51,6 +62,9 @@ function HostSecond() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Which of these best describes your place
+                <h6>6btnValue: {rentalunitValue}</h6>
+                <h6>7btnValue: {loftValue}</h6>
+                <h6>8btnValue: {condominiumValue}</h6>
               </Grid>
             </Box>
           </Grid>
@@ -90,6 +104,7 @@ function HostSecond() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: RENTALUNIT_HOST_BTN })}
                   >
                     Rental Unit
                   </Button>
@@ -111,6 +126,7 @@ function HostSecond() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: LOFT_HOST_BTN })}
                   >
                     Loft
                   </Button>
@@ -132,6 +148,7 @@ function HostSecond() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: CONDOMINIUM_HOST_BTN })}
                   >
                     Condominium
                   </Button>

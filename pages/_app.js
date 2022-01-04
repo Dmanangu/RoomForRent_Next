@@ -4,6 +4,9 @@ import "../styles/globals.css";
 import { StoreProvider } from "../utils/Store";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
+import { Provider } from "react-redux";
+import { store } from "../redux/store";
+
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const jssStyles = document.querySelector("#jss-server-side");
@@ -12,13 +15,17 @@ function MyApp({ Component, pageProps }) {
     }
   }, []);
   return (
-    <SnackbarProvider anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-      <StoreProvider>
-        <PayPalScriptProvider deferLoading={true}>
-          <Component {...pageProps} />
-        </PayPalScriptProvider>
-      </StoreProvider>
-    </SnackbarProvider>
+    <Provider store={store}>
+      <SnackbarProvider
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <StoreProvider>
+          <PayPalScriptProvider deferLoading={true}>
+            <Component {...pageProps} />
+          </PayPalScriptProvider>
+        </StoreProvider>
+      </SnackbarProvider>
+    </Provider>
   );
 }
 

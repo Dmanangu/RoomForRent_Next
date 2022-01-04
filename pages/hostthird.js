@@ -7,8 +7,19 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  ANENTIREPLACE_HOST_BTN,
+  APRIVATEROOM_HOST_BTN,
+  ASHAREDROOM_HOST_BTN,
+} from "../redux/actionTypes";
+
 function HostThird() {
   const classes = useStyles();
+  const { anentireplaceValue } = useSelector((state) => state.ninthbtn);
+  const { aprivateroomValue } = useSelector((state) => state.tenthbtn);
+  const { asharedroomValue } = useSelector((state) => state.eleventhbtn);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -51,6 +62,9 @@ function HostThird() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 What kind of space will the guests have?
+                <h6>9btnValue: {anentireplaceValue}</h6>
+                <h6>10btnValue: {aprivateroomValue}</h6>
+                <h6>11btnValue: {asharedroomValue}</h6>
               </Grid>
             </Box>
           </Grid>
@@ -90,6 +104,7 @@ function HostThird() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: ANENTIREPLACE_HOST_BTN })}
                   >
                     An Entire Place
                   </Button>
@@ -111,6 +126,7 @@ function HostThird() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: APRIVATEROOM_HOST_BTN })}
                   >
                     A Private Room
                   </Button>
@@ -132,6 +148,7 @@ function HostThird() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: ASHAREDROOM_HOST_BTN })}
                   >
                     A Shared Room
                   </Button>

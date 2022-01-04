@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -9,8 +9,15 @@ import { Button } from "@mui/material";
 
 import TextField from "@mui/material/TextField";
 
+import { LOCATION_HOST_INPUT } from "../redux/actionTypes";
+import { useSelector, useDispatch } from "react-redux";
+
 function HostFourth() {
   const classes = useStyles();
+
+  const [locationInput, setLocationInput] = useState("");
+  const { locationValue } = useSelector((state) => state.firstinput);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -53,6 +60,7 @@ function HostFourth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Where is your place located
+                <p>Location: {locationValue}</p>
               </Grid>
             </Box>
           </Grid>
@@ -88,8 +96,26 @@ function HostFourth() {
                     id="outlined-basic"
                     label="Enter Location"
                     variant="outlined"
+                    value={locationInput}
+                    onChange={(event) => setLocationInput(event.target.value)}
                   />
                 </Grid>
+                <Button
+                  variant="contained"
+                  style={{
+                    marginTop: 500,
+                    position: "absolute",
+                    marginLeft: 1100,
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: LOCATION_HOST_INPUT,
+                      payload: { locationValue: locationInput },
+                    })
+                  }
+                >
+                  Submit profile
+                </Button>
                 <Grid
                   item
                   style={{

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -7,8 +7,23 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  APARTMENT_HOST_BTN,
+  HOUSE_HOST_BTN,
+  SECONDARYUNIT_HOST_BTN,
+  BEDNBREAKFAST_HOST_BTN,
+  BOUTIQUEHOTEL_HOST_BTN,
+} from "../redux/actionTypes";
+
 function HostFirst() {
   const classes = useStyles();
+  const { apartmentValue } = useSelector((state) => state.firstbtn);
+  const { houseValue } = useSelector((state) => state.secondbtn);
+  const { secondaryunitValue } = useSelector((state) => state.thirdbtn);
+  const { bednbreakfastValue } = useSelector((state) => state.fourthbtn);
+  const { boutiquehotelValue } = useSelector((state) => state.fifthbtn);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -51,6 +66,11 @@ function HostFirst() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 What kind of place will you host?
+                <h6>1btnValue: {apartmentValue}</h6>
+                <h6>2btnValue: {houseValue}</h6>
+                <h6>3btnValue: {secondaryunitValue}</h6>
+                <h6>4btnValue: {bednbreakfastValue}</h6>
+                <h6>5btnValue: {boutiquehotelValue}</h6>
               </Grid>
             </Box>
           </Grid>
@@ -90,6 +110,7 @@ function HostFirst() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: APARTMENT_HOST_BTN })}
                   >
                     Apartment
                   </Button>
@@ -111,6 +132,7 @@ function HostFirst() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: HOUSE_HOST_BTN })}
                   >
                     House
                   </Button>
@@ -132,6 +154,7 @@ function HostFirst() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: SECONDARYUNIT_HOST_BTN })}
                   >
                     Secondary Unit
                   </Button>
@@ -153,6 +176,7 @@ function HostFirst() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: BEDNBREAKFAST_HOST_BTN })}
                   >
                     Bed and Breakfast
                   </Button>
@@ -174,6 +198,7 @@ function HostFirst() {
                       minWidth: "500px",
                       minHeight: "70px",
                     }}
+                    onClick={() => dispatch({ type: BOUTIQUEHOTEL_HOST_BTN })}
                   >
                     Boutique Hotel
                   </Button>

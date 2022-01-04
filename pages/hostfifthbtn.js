@@ -3,6 +3,14 @@ import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
+import { useSelector, useDispatch } from "react-redux";
+import {
+  GUEST_HOST_BTN,
+  BEDS_HOST_BTN,
+  BEDSROOMS_HOST_BTN,
+  BATHROOMS_HOST_BTN,
+} from "../redux/actionTypes";
+
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(2),
@@ -19,45 +27,45 @@ class FifthButton extends React.Component {
     show: true,
   };
 
-  IncrementItemG = () => {
+  IncrementItemGuest = () => {
     this.setState({ guest: this.state.guest + 1 });
   };
-  DecreaseItemG = () => {
+  DecreaseItemGuest = () => {
     if (this.state.guest !== 0) this.setState({ guest: this.state.guest - 1 });
   };
-  ToggleClickG = () => {
+  ToggleClickGuest = () => {
     this.setState({ show: !this.state.show });
   };
 
-  IncrementItemB = () => {
+  IncrementItemBeds = () => {
     this.setState({ beds: this.state.beds + 1 });
   };
-  DecreaseItemB = () => {
+  DecreaseItemBeds = () => {
     if (this.state.beds !== 0) this.setState({ beds: this.state.beds - 1 });
   };
-  ToggleClickB = () => {
+  ToggleClickBeds = () => {
     this.setState({ show: !this.state.show });
   };
 
-  IncrementItemBR = () => {
+  IncrementItemBedRooms = () => {
     this.setState({ bedrooms: this.state.bedrooms + 1 });
   };
-  DecreaseItemBR = () => {
+  DecreaseItemBedRooms = () => {
     if (this.state.bedrooms !== 0)
       this.setState({ bedrooms: this.state.bedrooms - 1 });
   };
-  ToggleClickBR = () => {
+  ToggleClickBedRooms = () => {
     this.setState({ show: !this.state.show });
   };
 
-  IncrementItemBT = () => {
+  IncrementItemBathRooms = () => {
     this.setState({ bathrooms: this.state.bathrooms + 1 });
   };
-  DecreaseItemBT = () => {
+  DecreaseItemBathRooms = () => {
     if (this.state.bathrooms !== 0)
       this.setState({ bathrooms: this.state.bathrooms - 1 });
   };
-  ToggleClickBT = () => {
+  ToggleClickBathRooms = () => {
     this.setState({ show: !this.state.show });
   };
 
@@ -70,7 +78,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 2 }} style={{ width: 90 }}>
             <button
-              onClick={this.DecreaseItemG}
+              onClick={this.DecreaseItemGuest}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               -
@@ -83,7 +91,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 4 }} style={{ width: 90 }}>
             <button
-              onClick={this.IncrementItemG}
+              onClick={this.IncrementItemGuest}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               +
@@ -96,7 +104,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 2 }} style={{ width: 90 }}>
             <button
-              onClick={this.DecreaseItemB}
+              onClick={this.DecreaseItemBeds}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               -
@@ -109,7 +117,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 4 }} style={{ width: 90 }}>
             <button
-              onClick={this.IncrementItemB}
+              onClick={this.IncrementItemBeds}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               +
@@ -122,7 +130,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 2 }} style={{ width: 90 }}>
             <button
-              onClick={this.DecreaseItemBR}
+              onClick={this.DecreaseItemBedRooms}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               -
@@ -135,7 +143,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 4 }} style={{ width: 90 }}>
             <button
-              onClick={this.IncrementItemBR}
+              onClick={this.IncrementItemBedRooms}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               +
@@ -148,7 +156,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 2 }} style={{ width: 90 }}>
             <button
-              onClick={this.DecreaseItemBT}
+              onClick={this.DecreaseItemBathRooms}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               -
@@ -161,7 +169,7 @@ class FifthButton extends React.Component {
           </Item>
           <Item sx={{ order: 4 }} style={{ width: 90 }}>
             <button
-              onClick={this.IncrementItemBT}
+              onClick={this.IncrementItemBathRooms}
               style={{ width: 30, height: 30, marginTop: 20 }}
             >
               +
