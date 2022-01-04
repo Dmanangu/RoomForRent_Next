@@ -16,7 +16,7 @@ function HostFourth() {
   const classes = useStyles();
 
   const [locationInput, setLocationInput] = useState("");
-  const { locationValue } = useSelector((state) => state.firstinput);
+  const { locationValue } = useSelector((state) => state.fourthpage);
   const dispatch = useDispatch();
 
   return (

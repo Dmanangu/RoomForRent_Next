@@ -18,11 +18,11 @@ import {
 
 function HostFirst() {
   const classes = useStyles();
-  const { apartmentValue } = useSelector((state) => state.firstbtn);
-  const { houseValue } = useSelector((state) => state.secondbtn);
-  const { secondaryunitValue } = useSelector((state) => state.thirdbtn);
-  const { bednbreakfastValue } = useSelector((state) => state.fourthbtn);
-  const { boutiquehotelValue } = useSelector((state) => state.fifthbtn);
+  const { apartmentValue } = useSelector((state) => state.firstpage);
+  const { houseValue } = useSelector((state) => state.firstpage);
+  const { secondaryunitValue } = useSelector((state) => state.firstpage);
+  const { bednbreakfastValue } = useSelector((state) => state.firstpage);
+  const { boutiquehotelValue } = useSelector((state) => state.firstpage);
   const dispatch = useDispatch();
 
   return (

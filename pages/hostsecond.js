@@ -16,9 +16,9 @@ import {
 
 function HostSecond() {
   const classes = useStyles();
-  const { rentalunitValue } = useSelector((state) => state.sixthbtn);
-  const { loftValue } = useSelector((state) => state.seventhbtn);
-  const { condominiumValue } = useSelector((state) => state.eightbtn);
+  const { rentalunitValue } = useSelector((state) => state.secondpage);
+  const { loftValue } = useSelector((state) => state.secondpage);
+  const { condominiumValue } = useSelector((state) => state.secondpage);
   const dispatch = useDispatch();
 
   return (

@@ -1,8 +1,8 @@
-import { LOCATION_HOST_INPUT } from "../../actionTypes";
+import { LOCATION_HOST_INPUT } from "../actionTypes";
 const initialState = {
   locationValue: "",
 };
-const firstinputReducer = (state = initialState, action) => {
+const fourthpageReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOCATION_HOST_INPUT:
       return {
@@ -13,4 +13,4 @@ const firstinputReducer = (state = initialState, action) => {
       return state;
   }
 };
-export default firstinputReducer;
+export default fourthpageReducer;

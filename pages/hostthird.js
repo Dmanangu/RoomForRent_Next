@@ -16,9 +16,9 @@ import {
 
 function HostThird() {
   const classes = useStyles();
-  const { anentireplaceValue } = useSelector((state) => state.ninthbtn);
-  const { aprivateroomValue } = useSelector((state) => state.tenthbtn);
-  const { asharedroomValue } = useSelector((state) => state.eleventhbtn);
+  const { anentireplaceValue } = useSelector((state) => state.thirdpage);
+  const { aprivateroomValue } = useSelector((state) => state.thirdpage);
+  const { asharedroomValue } = useSelector((state) => state.thirdpage);
   const dispatch = useDispatch();
 
   return (
