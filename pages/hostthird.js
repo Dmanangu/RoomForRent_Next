@@ -61,7 +61,6 @@ function HostThird() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 What kind of space will the guests have?
-                <h6>Value: {thirdpageValue}</h6>
               </Grid>
             </Box>
           </Grid>

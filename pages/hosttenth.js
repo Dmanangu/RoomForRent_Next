@@ -59,7 +59,6 @@ function HostTenth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Now for the fun part set your price
-                <p>Price: ₱{priceValue}</p>
               </Grid>
             </Box>
           </Grid>

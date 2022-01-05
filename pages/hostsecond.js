@@ -60,7 +60,6 @@ function HostSecond() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Which of these best describes your place
-                <h6>Value: {secondpageValue}</h6>
               </Grid>
             </Box>
           </Grid>

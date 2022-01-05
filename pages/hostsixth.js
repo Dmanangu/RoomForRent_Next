@@ -62,9 +62,6 @@ function HostSixth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Where is your place located?
-                <p>Amenities: {amenitiesValue}</p>
-                <p>Favorites: {favoritesValue}</p>
-                <p>Safety Items: {safetyitemsValue}</p>
               </Grid>
             </Box>
           </Grid>

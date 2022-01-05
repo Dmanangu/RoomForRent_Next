@@ -60,7 +60,6 @@ function HostFourth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Where is your place located
-                <p>Location: {locationValue}</p>
               </Grid>
             </Box>
           </Grid>

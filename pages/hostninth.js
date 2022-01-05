@@ -62,8 +62,6 @@ function HostNinth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Let's give your place a name and let's describe your place
-                <p>Title: {titleValue}</p>
-                <p>Decription: {descriptionValue}</p>
               </Grid>
             </Box>
           </Grid>

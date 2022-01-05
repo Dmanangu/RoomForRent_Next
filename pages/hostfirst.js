@@ -63,7 +63,6 @@ function HostFirst() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 What kind of place will you host?
-                <h6>Value: {firstpageValue}</h6>
               </Grid>
             </Box>
           </Grid>

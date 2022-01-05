@@ -65,8 +65,6 @@ function HostEighth() {
                   fontWeight: 600,
                 }}
               >
-                <p>LAT: {latitudeValue}</p>
-                <p>LONG: {longitudeValue}</p>
                 <Grid
                   item
                   style={{

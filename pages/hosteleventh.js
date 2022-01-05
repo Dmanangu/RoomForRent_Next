@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { Link } from "@mui/material";
+import { Link, Container, Typography } from "@mui/material";
 import NextLink from "next/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -11,11 +11,14 @@ import { useSelector } from "react-redux";
 import ReactMapGL from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+import useStyles from "../utils/style";
+
 function HostEleventh() {
+  const classes = useStyles();
   const [viewport, setViewport] = useState({
     latitude: 14.9543,
     longitude: 120.91867,
-    zoom: 13.5,
+    zoom: 12,
     width: 900,
     height: 500,
     pitch: 70,
@@ -76,9 +79,6 @@ function HostEleventh() {
         </Grid>
         <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid item xs={6}>
-            IMAGE {imageValue}
-          </Grid>
-          <Grid item xs={6}>
             <Grid
               item
               style={{
@@ -87,6 +87,32 @@ function HostEleventh() {
                 fontWeight: 600,
                 marginTop: 150,
                 position: "absolute",
+              }}
+            >
+              <Container
+                style={{
+                  marginLeft: 20,
+                  minWidth: 950,
+                  maxWidth: 400,
+                  minHeight: 800,
+                  maxHeight: 400,
+                  boxShadow: "2px 2px 5px 2px black",
+                  border: "1px solid black",
+                  overflow: "hidden",
+                }}
+              >
+                <img style={{ width: 950, height: 800 }} src={imageValue} />
+              </Container>
+            </Grid>
+          </Grid>
+          <Grid item xs={6}>
+            <Grid
+              item
+              style={{
+                color: "White",
+                fontSize: 35,
+                fontWeight: 600,
+                marginTop: 150,
               }}
             >
               <p> {titleValue}</p>
@@ -126,8 +152,21 @@ function HostEleventh() {
           </Box>
         </Grid>
       </Box>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={6}>
+      <Grid
+        container
+        rowSpacing={1}
+        columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+        style={{ marginTop: 20, marginLeft: 10 }}
+      >
+        <Grid
+          item
+          xs={6}
+          style={{
+            color: "black",
+            fontSize: 35,
+            fontWeight: 600,
+          }}
+        >
           <p>Location: {locationValue}</p>
           <p>
             {firstpageValue} - {secondpageValue} - {thirdpageValue}
@@ -161,9 +200,9 @@ function HostEleventh() {
       <Grid
         item
         style={{
-          marginTop: 800,
+          marginTop: 150,
           position: "absolute",
-          marginLeft: 1800,
+          marginLeft: 1400,
         }}
       >
         <NextLink href="/" passHref>
@@ -186,7 +225,7 @@ function HostEleventh() {
       <Grid
         item
         style={{
-          marginTop: 800,
+          marginTop: 150,
           position: "absolute",
           marginLeft: 400,
         }}
@@ -208,6 +247,9 @@ function HostEleventh() {
           </Link>
         </NextLink>
       </Grid>
+      <footer className={classes.footer} style={{ marginTop: "30vh" }}>
+        <Typography>All rights reserved. Room For Rent 2021-2022</Typography>
+      </footer>
     </div>
   );
 }

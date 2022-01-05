@@ -7,7 +7,7 @@ const seventhpageReducer = (state = initialState, action) => {
     case IMAGE_HOST_INPUT:
       return {
         ...state,
-        imageValue: state.imageValue.imageValue,
+        imageValue: action.payload.imageValue,
       };
 
     default:
