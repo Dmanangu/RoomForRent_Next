@@ -4,26 +4,24 @@ import {
   ASHAREDROOM_HOST_BTN,
 } from "../actionTypes";
 const initialState = {
-  anentireplaceValue: "",
-  aprivateroomValue: "",
-  asharedroomValue: "",
+  thirdpageValue: "",
 };
 const thirdpageReducer = (state = initialState, action) => {
   switch (action.type) {
     case ANENTIREPLACE_HOST_BTN:
       return {
         ...state,
-        anentireplaceValue: (state.anentireplaceValue = "An Entire Place"),
+        thirdpageValue: (state.thirdpageValue = "An Entire Place"),
       };
     case APRIVATEROOM_HOST_BTN:
       return {
         ...state,
-        aprivateroomValue: (state.aprivateroomValue = "A Private Room"),
+        thirdpageValue: (state.thirdpageValue = "A Private Room"),
       };
     case ASHAREDROOM_HOST_BTN:
       return {
         ...state,
-        asharedroomValue: (state.asharedroomValue = "A Shared Room"),
+        thirdpageValue: (state.thirdpageValue = "A Shared Room"),
       };
     default:
       return state;

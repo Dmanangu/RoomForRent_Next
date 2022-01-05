@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -8,8 +8,15 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
+import { useSelector, useDispatch } from "react-redux";
+import { PRICE_HOST_INPUT } from "../redux/actionTypes";
+
 function HostTenth() {
   const classes = useStyles();
+
+  const [priceInput, setpriceInput] = useState("");
+  const dispatch = useDispatch();
+  const { priceValue } = useSelector((state) => state.tenthpage);
 
   return (
     <div>
@@ -52,6 +59,7 @@ function HostTenth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Now for the fun part set your price
+                <p>Price: ₱{priceValue}</p>
               </Grid>
             </Box>
           </Grid>
@@ -87,9 +95,28 @@ function HostTenth() {
                     id="outlined-basic"
                     label="PRICE/NIGHT"
                     variant="outlined"
+                    value={priceInput}
+                    onChange={(event) => setpriceInput(event.target.value)}
                   />
                 </Grid>
-
+                <Button
+                  variant="contained"
+                  style={{
+                    marginTop: 400,
+                    position: "absolute",
+                    marginLeft: 1100,
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: PRICE_HOST_INPUT,
+                      payload: {
+                        priceValue: priceInput,
+                      },
+                    })
+                  }
+                >
+                  Submit price
+                </Button>
                 <Grid
                   item
                   style={{

@@ -14,15 +14,12 @@ import {
   SECONDARYUNIT_HOST_BTN,
   BEDNBREAKFAST_HOST_BTN,
   BOUTIQUEHOTEL_HOST_BTN,
+  REMOVE_HOST,
 } from "../redux/actionTypes";
 
 function HostFirst() {
   const classes = useStyles();
-  const { apartmentValue } = useSelector((state) => state.firstpage);
-  const { houseValue } = useSelector((state) => state.firstpage);
-  const { secondaryunitValue } = useSelector((state) => state.firstpage);
-  const { bednbreakfastValue } = useSelector((state) => state.firstpage);
-  const { boutiquehotelValue } = useSelector((state) => state.firstpage);
+  const { firstpageValue } = useSelector((state) => state.firstpage);
   const dispatch = useDispatch();
 
   return (
@@ -66,11 +63,7 @@ function HostFirst() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 What kind of place will you host?
-                <h6>1btnValue: {apartmentValue}</h6>
-                <h6>2btnValue: {houseValue}</h6>
-                <h6>3btnValue: {secondaryunitValue}</h6>
-                <h6>4btnValue: {bednbreakfastValue}</h6>
-                <h6>5btnValue: {boutiquehotelValue}</h6>
+                <h6>Value: {firstpageValue}</h6>
               </Grid>
             </Box>
           </Grid>
@@ -101,19 +94,23 @@ function HostFirst() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: APARTMENT_HOST_BTN })}
-                  >
-                    Apartment
-                  </Button>
+                  <NextLink href="/hostsecond" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() => dispatch({ type: APARTMENT_HOST_BTN })}
+                      >
+                        Apartment
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -123,19 +120,23 @@ function HostFirst() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: HOUSE_HOST_BTN })}
-                  >
-                    House
-                  </Button>
+                  <NextLink href="/hostsecond" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() => dispatch({ type: HOUSE_HOST_BTN })}
+                      >
+                        House
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -145,19 +146,25 @@ function HostFirst() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: SECONDARYUNIT_HOST_BTN })}
-                  >
-                    Secondary Unit
-                  </Button>
+                  <NextLink href="/hostsecond" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() =>
+                          dispatch({ type: SECONDARYUNIT_HOST_BTN })
+                        }
+                      >
+                        Secondary Unit
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -167,19 +174,25 @@ function HostFirst() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: BEDNBREAKFAST_HOST_BTN })}
-                  >
-                    Bed and Breakfast
-                  </Button>
+                  <NextLink href="/hostsecond" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() =>
+                          dispatch({ type: BEDNBREAKFAST_HOST_BTN })
+                        }
+                      >
+                        Bed and Breakfast
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -189,19 +202,25 @@ function HostFirst() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: BOUTIQUEHOTEL_HOST_BTN })}
-                  >
-                    Boutique Hotel
-                  </Button>
+                  <NextLink href="/hostsecond" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() =>
+                          dispatch({ type: BOUTIQUEHOTEL_HOST_BTN })
+                        }
+                      >
+                        Boutique Hotel
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -210,24 +229,7 @@ function HostFirst() {
                     position: "absolute",
                     marginLeft: 1800,
                   }}
-                >
-                  <NextLink href="/hostsecond" passHref>
-                    <Link>
-                      <Button
-                        variant="contained"
-                        style={{
-                          fontSize: 17,
-                          maxWidth: "150px",
-                          maxHeight: "80px",
-                          minWidth: "90px",
-                          minHeight: "65px",
-                        }}
-                      >
-                        Next
-                      </Button>
-                    </Link>
-                  </NextLink>
-                </Grid>
+                ></Grid>
                 <Grid
                   item
                   style={{

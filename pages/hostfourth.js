@@ -114,7 +114,7 @@ function HostFourth() {
                     })
                   }
                 >
-                  Submit profile
+                  Submit location
                 </Button>
                 <Grid
                   item

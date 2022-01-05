@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -9,9 +9,17 @@ import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
 import Map from "../component/map";
+import { useSelector, useDispatch } from "react-redux";
+import { LATITUDE_LONGITUDE_HOST_INPUT } from "../redux/actionTypes";
 
 function HostEighth() {
   const classes = useStyles();
+  const [latitudeInput, setlatitudeInput] = useState("");
+  const [longitudeInput, setlongitudeInput] = useState("");
+  const dispatch = useDispatch();
+  const { latitudeValue, longitudeValue } = useSelector(
+    (state) => state.eightpage
+  );
 
   return (
     <div>
@@ -57,6 +65,8 @@ function HostEighth() {
                   fontWeight: 600,
                 }}
               >
+                <p>LAT: {latitudeValue}</p>
+                <p>LONG: {longitudeValue}</p>
                 <Grid
                   item
                   style={{
@@ -81,6 +91,8 @@ function HostEighth() {
                     id="outlined-basic"
                     label="Enter Latitude"
                     variant="outlined"
+                    value={latitudeInput}
+                    onChange={(event) => setlatitudeInput(event.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -104,6 +116,8 @@ function HostEighth() {
                     id="outlined-basic"
                     label="Enter Longtitude"
                     variant="outlined"
+                    value={longitudeInput}
+                    onChange={(event) => setlongitudeInput(event.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -122,6 +136,15 @@ function HostEighth() {
                       minWidth: "90px",
                       minHeight: "65px",
                     }}
+                    onClick={() =>
+                      dispatch({
+                        type: LATITUDE_LONGITUDE_HOST_INPUT,
+                        payload: {
+                          latitudeValue: latitudeInput,
+                          longitudeValue: longitudeInput,
+                        },
+                      })
+                    }
                   >
                     Save
                   </Button>

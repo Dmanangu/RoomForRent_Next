@@ -6,39 +6,35 @@ import {
   BOUTIQUEHOTEL_HOST_BTN,
 } from "../actionTypes";
 const initialState = {
-  apartmentValue: "",
-  houseValue: "",
-  secondaryunitValue: "",
-  bednbreakfastValue: "",
-  boutiquehotelValue: "",
+  firstpageValue: "",
 };
 const firstpageReducer = (state = initialState, action) => {
   switch (action.type) {
     case APARTMENT_HOST_BTN:
       return {
         ...state,
-        apartmentValue: (state.apartmentValue = "Apartment"),
+        firstpageValue: (state.firstpageValue = "Apartment"),
       };
     case HOUSE_HOST_BTN:
       return {
         ...state,
-        houseValue: (state.houseValue = "House"),
+        firstpageValue: (state.firstpageValue = "House"),
       };
     case SECONDARYUNIT_HOST_BTN:
       return {
         ...state,
-        secondaryunitValue: (state.secondaryunitValue = "Secondary Unit"),
+        firstpageValue: (state.firstpageValue = "Secondary Unit"),
       };
 
     case BEDNBREAKFAST_HOST_BTN:
       return {
         ...state,
-        bednbreakfastValue: (state.bednbreakfastValue = "Bed and Breakfast"),
+        firstpageValue: (state.firstpageValue = "Bed and Breakfast"),
       };
     case BOUTIQUEHOTEL_HOST_BTN:
       return {
         ...state,
-        boutiquehotelValue: (state.boutiquehotelValue = "Boutique Hotel"),
+        firstpageValue: (state.firstpageValue = "Boutique Hotel"),
       };
 
     default:

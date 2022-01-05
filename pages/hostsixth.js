@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -8,8 +8,18 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
+import { useSelector, useDispatch } from "react-redux";
+import { AMENITIES_FAVORITES_SAFETYITEMS_HOST_INPUT } from "../redux/actionTypes.js";
+
 function HostSixth() {
   const classes = useStyles();
+  const [amenitiesInput, setAmenitiesInput] = useState("");
+  const [favoritesInput, setFavoritesInput] = useState("");
+  const [safetyitemsInput, setSafetyItemsInput] = useState("");
+  const { amenitiesValue, favoritesValue, safetyitemsValue } = useSelector(
+    (state) => state.sixthpage
+  );
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -52,6 +62,9 @@ function HostSixth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Where is your place located?
+                <p>Amenities: {amenitiesValue}</p>
+                <p>Favorites: {favoritesValue}</p>
+                <p>Safety Items: {safetyitemsValue}</p>
               </Grid>
             </Box>
           </Grid>
@@ -97,6 +110,8 @@ function HostSixth() {
                     id="outlined-basic"
                     label="pool, hot tub, exercise equipment"
                     variant="outlined"
+                    value={amenitiesInput}
+                    onChange={(event) => setAmenitiesInput(event.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -122,6 +137,8 @@ function HostSixth() {
                     id="outlined-basic"
                     label="wifi, tv, aircondition, free parking"
                     variant="outlined"
+                    value={favoritesInput}
+                    onChange={(event) => setFavoritesInput(event.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -147,9 +164,32 @@ function HostSixth() {
                     id="outlined-basic"
                     label="first aid kit, fire extinguisher, smoke alarm"
                     variant="outlined"
+                    value={safetyitemsInput}
+                    onChange={(event) =>
+                      setSafetyItemsInput(event.target.value)
+                    }
                   />
                 </Grid>
-
+                <Button
+                  variant="contained"
+                  style={{
+                    marginTop: 600,
+                    position: "absolute",
+                    marginLeft: 1100,
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: AMENITIES_FAVORITES_SAFETYITEMS_HOST_INPUT,
+                      payload: {
+                        amenitiesValue: amenitiesInput,
+                        favoritesValue: favoritesInput,
+                        safetyitemsValue: safetyitemsInput,
+                      },
+                    })
+                  }
+                >
+                  Submit items
+                </Button>
                 <Grid
                   item
                   style={{

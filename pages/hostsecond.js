@@ -16,9 +16,7 @@ import {
 
 function HostSecond() {
   const classes = useStyles();
-  const { rentalunitValue } = useSelector((state) => state.secondpage);
-  const { loftValue } = useSelector((state) => state.secondpage);
-  const { condominiumValue } = useSelector((state) => state.secondpage);
+  const { secondpageValue } = useSelector((state) => state.secondpage);
   const dispatch = useDispatch();
 
   return (
@@ -62,9 +60,7 @@ function HostSecond() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Which of these best describes your place
-                <h6>6btnValue: {rentalunitValue}</h6>
-                <h6>7btnValue: {loftValue}</h6>
-                <h6>8btnValue: {condominiumValue}</h6>
+                <h6>Value: {secondpageValue}</h6>
               </Grid>
             </Box>
           </Grid>
@@ -95,19 +91,23 @@ function HostSecond() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: RENTALUNIT_HOST_BTN })}
-                  >
-                    Rental Unit
-                  </Button>
+                  <NextLink href="/hostthird" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() => dispatch({ type: RENTALUNIT_HOST_BTN })}
+                      >
+                        Rental Unit
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -117,19 +117,23 @@ function HostSecond() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: LOFT_HOST_BTN })}
-                  >
-                    Loft
-                  </Button>
+                  <NextLink href="/hostthird" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() => dispatch({ type: LOFT_HOST_BTN })}
+                      >
+                        Loft
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -139,19 +143,23 @@ function HostSecond() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: CONDOMINIUM_HOST_BTN })}
-                  >
-                    Condominium
-                  </Button>
+                  <NextLink href="/hostthird" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() => dispatch({ type: CONDOMINIUM_HOST_BTN })}
+                      >
+                        Condominium
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
 
                 <Grid
@@ -161,24 +169,7 @@ function HostSecond() {
                     position: "absolute",
                     marginLeft: 1800,
                   }}
-                >
-                  <NextLink href="/hostthird" passHref>
-                    <Link>
-                      <Button
-                        variant="contained"
-                        style={{
-                          fontSize: 17,
-                          maxWidth: "150px",
-                          maxHeight: "80px",
-                          minWidth: "90px",
-                          minHeight: "65px",
-                        }}
-                      >
-                        Next
-                      </Button>
-                    </Link>
-                  </NextLink>
-                </Grid>
+                ></Grid>
                 <Grid
                   item
                   style={{

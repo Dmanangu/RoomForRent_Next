@@ -2,10 +2,16 @@ import { useState } from "react";
 import ReactMapGL from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
+import { useSelector, useDispatch } from "react-redux";
+
 function Map() {
+  const { latitudeValue, longitudeValue } = useSelector(
+    (state) => state.eightpage
+  );
+
   const [viewport, setViewport] = useState({
-    latitude: 14.9543,
-    longitude: 120.91867,
+    latitude: latitudeValue,
+    longitude: longitudeValue,
     zoom: 13.5,
     width: 900,
     height: 900,

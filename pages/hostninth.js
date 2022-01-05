@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -8,8 +8,18 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
+import { useSelector, useDispatch } from "react-redux";
+import { TITLE_DECRIPTION_HOST_INPUT } from "../redux/actionTypes";
+
 function HostNinth() {
   const classes = useStyles();
+
+  const [titleInput, settitleInput] = useState("");
+  const [descriptionInput, setdescriptionInput] = useState("");
+  const dispatch = useDispatch();
+  const { titleValue, descriptionValue } = useSelector(
+    (state) => state.ninthpage
+  );
 
   return (
     <div>
@@ -52,6 +62,8 @@ function HostNinth() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 Let's give your place a name and let's describe your place
+                <p>Title: {titleValue}</p>
+                <p>Decription: {descriptionValue}</p>
               </Grid>
             </Box>
           </Grid>
@@ -97,6 +109,8 @@ function HostNinth() {
                     id="outlined-basic"
                     label="Enter your Title"
                     variant="outlined"
+                    value={titleInput}
+                    onChange={(event) => settitleInput(event.target.value)}
                   />
                 </Grid>
                 <Grid
@@ -122,9 +136,31 @@ function HostNinth() {
                     id="outlined-basic"
                     label="Enter your Description"
                     variant="outlined"
+                    value={descriptionInput}
+                    onChange={(event) =>
+                      setdescriptionInput(event.target.value)
+                    }
                   />
                 </Grid>
-
+                <Button
+                  variant="contained"
+                  style={{
+                    marginTop: 600,
+                    position: "absolute",
+                    marginLeft: 1100,
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: TITLE_DECRIPTION_HOST_INPUT,
+                      payload: {
+                        titleValue: titleInput,
+                        descriptionValue: descriptionInput,
+                      },
+                    })
+                  }
+                >
+                  Submit items
+                </Button>
                 <Grid
                   item
                   style={{

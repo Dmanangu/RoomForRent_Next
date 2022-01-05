@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Container, Link } from "@mui/material";
 import NextLink from "next/Link";
@@ -6,12 +6,17 @@ import useStyles from "../utils/style";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
+
+import { useSelector, useDispatch } from "react-redux";
+import { IMAGE_HOST_INPUT } from "../redux/actionTypes";
 
 function HostSeventh() {
+  const [imageInput, setImageInput] = useState("");
   const classes = useStyles();
   const [image, setImage] = React.useState("");
   const imageRef = React.useRef(null);
+  const dispatch = useDispatch();
+  const { imageValue } = useSelector((state) => state.seventhpage);
 
   function useDisplayImage() {
     const [result, setResult] = React.useState("");
@@ -115,9 +120,12 @@ function HostSeventh() {
                     <div className="App">
                       <input
                         type="file"
+                        accept=".jpg, .jpeg, .png"
+                        value={imageInput}
                         onChange={(e) => {
                           setImage(e.target.files[0]);
                           uploader(e);
+                          setImageInput(event.target.value);
                         }}
                       />
                       {result && <img ref={imageRef} src={result} alt="" />}
@@ -132,7 +140,24 @@ function HostSeventh() {
                     marginLeft: 865,
                   }}
                 ></Grid>
-
+                <Button
+                  variant="contained"
+                  style={{
+                    marginTop: 600,
+                    position: "absolute",
+                    marginLeft: 1100,
+                  }}
+                  onClick={() =>
+                    dispatch({
+                      type: IMAGE_HOST_INPUT,
+                      payload: {
+                        imageValue: result,
+                      },
+                    })
+                  }
+                >
+                  Save Image
+                </Button>
                 <Grid
                   item
                   style={{

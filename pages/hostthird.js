@@ -16,9 +16,8 @@ import {
 
 function HostThird() {
   const classes = useStyles();
-  const { anentireplaceValue } = useSelector((state) => state.thirdpage);
-  const { aprivateroomValue } = useSelector((state) => state.thirdpage);
-  const { asharedroomValue } = useSelector((state) => state.thirdpage);
+  const { thirdpageValue } = useSelector((state) => state.thirdpage);
+
   const dispatch = useDispatch();
 
   return (
@@ -62,9 +61,7 @@ function HostThird() {
                 style={{ color: "White", fontSize: 50, fontWeight: 600 }}
               >
                 What kind of space will the guests have?
-                <h6>9btnValue: {anentireplaceValue}</h6>
-                <h6>10btnValue: {aprivateroomValue}</h6>
-                <h6>11btnValue: {asharedroomValue}</h6>
+                <h6>Value: {thirdpageValue}</h6>
               </Grid>
             </Box>
           </Grid>
@@ -95,19 +92,25 @@ function HostThird() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: ANENTIREPLACE_HOST_BTN })}
-                  >
-                    An Entire Place
-                  </Button>
+                  <NextLink href="/hostfourth" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() =>
+                          dispatch({ type: ANENTIREPLACE_HOST_BTN })
+                        }
+                      >
+                        An Entire Place
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -117,19 +120,25 @@ function HostThird() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: APRIVATEROOM_HOST_BTN })}
-                  >
-                    A Private Room
-                  </Button>
+                  <NextLink href="/hostfourth" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() =>
+                          dispatch({ type: APRIVATEROOM_HOST_BTN })
+                        }
+                      >
+                        A Private Room
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
                 <Grid
                   item
@@ -139,19 +148,23 @@ function HostThird() {
                     marginLeft: 1050,
                   }}
                 >
-                  <Button
-                    variant="contained"
-                    style={{
-                      fontSize: 17,
-                      maxWidth: "550px",
-                      maxHeight: "80px",
-                      minWidth: "500px",
-                      minHeight: "70px",
-                    }}
-                    onClick={() => dispatch({ type: ASHAREDROOM_HOST_BTN })}
-                  >
-                    A Shared Room
-                  </Button>
+                  <NextLink href="/hostfourth" passHref>
+                    <Link>
+                      <Button
+                        variant="contained"
+                        style={{
+                          fontSize: 17,
+                          maxWidth: "550px",
+                          maxHeight: "80px",
+                          minWidth: "500px",
+                          minHeight: "70px",
+                        }}
+                        onClick={() => dispatch({ type: ASHAREDROOM_HOST_BTN })}
+                      >
+                        A Shared Room
+                      </Button>
+                    </Link>
+                  </NextLink>
                 </Grid>
 
                 <Grid
@@ -161,24 +174,7 @@ function HostThird() {
                     position: "absolute",
                     marginLeft: 1800,
                   }}
-                >
-                  <NextLink href="/hostfourth" passHref>
-                    <Link>
-                      <Button
-                        variant="contained"
-                        style={{
-                          fontSize: 17,
-                          maxWidth: "150px",
-                          maxHeight: "80px",
-                          minWidth: "90px",
-                          minHeight: "65px",
-                        }}
-                      >
-                        Next
-                      </Button>
-                    </Link>
-                  </NextLink>
-                </Grid>
+                ></Grid>
                 <Grid
                   item
                   style={{
