@@ -27,7 +27,7 @@ export function useUserData() {
 }
 
 export async function useRentalsData() {
-  const postsQuery = firestore.collectionGroup("rents");
+  const postsQuery = firestore.collectionGroup("rentals");
 
   const rentalProperties = await postsQuery.get().docs.map(postToJSON);
 
@@ -39,7 +39,7 @@ export async function useRentalsData() {
 }
 
 export async function getServerSideProps() {
-  const postsQuery = firestore.collectionGroup("rents");
+  const postsQuery = firestore.collectionGroup("rentals");
   const posts = (await postsQuery.get()).docs.map(postToJSON);
 
   return {
