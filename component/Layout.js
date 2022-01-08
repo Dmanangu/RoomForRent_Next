@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
 import {
   Link,
@@ -12,31 +12,31 @@ import {
 } from "@mui/material";
 import NextLink from "next/Link";
 import useStyles from "../utils/style";
-import { auth, googleAuthProvider } from "../database/firebase";
-// import { useRouter } from "next/router";
+
+import { useRouter } from "next/router";
 // import Store from "../utils/Store";
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
+import { auth } from "../component/firebase/firebaseClient";
+import { UserContext } from "../component/firebase/context";
 
 function Layout({ children }) {
-  // const router = useRouter();
-  // const { state, dispatch } = useContext(Store);
-  // const { userInfo } = state;
-  // const [anchorEl, setAnchorEl] = useState(null);
-  // const loginClickHandler = (e) => {
-  //   setAnchorEl(e.currentTarget);
-  // };
-  // const loginMenuCloseHandler = (e, redirect) => {
-  //   setAnchorEl(null);
-  //   if (redirect) {
-  //     router.push(redirect);
-  //   }
-  // };
-  // const logoutClickHandler = () => {
-  //   setAnchorEl(null);
-  //   dispatch({ type: "USER_LOGOUT" });
-  //   Cookies.remove("userInfo");
-  //   router.push("/");
-  // };
+  const { user, username } = useContext(UserContext); //user
+  const router = useRouter();
+  const [anchorEl, setAnchorEl] = useState(null);
+  const loginClickHandler = (e) => {
+    setAnchorEl(e.currentTarget);
+  };
+  const loginMenuCloseHandler = (e, redirect) => {
+    setAnchorEl(null);
+    if (redirect) {
+      router.push(redirect);
+    }
+  };
+  const logoutClickHandler = () => {
+    setAnchorEl(null);
+    Cookies.remove(username);
+    router.push("/");
+  };
   const classes = useStyles();
   return (
     <div>
@@ -68,11 +68,8 @@ function Layout({ children }) {
               <Typography>Become a host</Typography>
             </Link>
           </NextLink>
-          <NextLink href="/login" passHref>
-            <Link>Login</Link>
-          </NextLink>
           {/* This change Login button into the user Name  */}
-          {/* {userInfo ? (
+          {user ? (
             <>
               <Button
                 aria-controls="simple-menu"
@@ -80,8 +77,7 @@ function Layout({ children }) {
                 onClick={loginClickHandler}
                 className={classes.navbarButton}
               >
-                {userInfo.name}
-                
+                {username}
               </Button>
               <Menu
                 id="simple-menu"
@@ -90,18 +86,19 @@ function Layout({ children }) {
                 open={Boolean(anchorEl)}
                 onClose={loginMenuCloseHandler}
               >
-                <MenuItem onCLick={(e) => loginMenuCloseHandler(e, "/profile")}>
+                {/* <MenuItem onClick={(e) => loginMenuCloseHandler(e, "/profile")}>
                   Profile
+                </MenuItem> */}
+                <MenuItem onClick={logoutClickHandler}>
+                  <SignOutButton />
                 </MenuItem>
-                <MenuItem onCLick={logoutClickHandler}><SignOutButton/></MenuItem>
-                
               </Menu>
             </>
           ) : (
             <NextLink href="/login" passHref>
               <Link className={classes.sizePlus}>Login</Link>
             </NextLink>
-          )} */}
+          )}
         </Toolbar>
       </AppBar>
 
@@ -116,5 +113,9 @@ function Layout({ children }) {
 export default Layout;
 
 function SignOutButton() {
-  return <Button onClick={() => auth.signOut()}>Logout</Button>;
+  return (
+    <Button href="/" onClick={() => auth.signOut()}>
+      Logout
+    </Button>
+  );
 }

@@ -6,66 +6,86 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Layout from "../component/Layout";
 import useStyles from "../utils/style";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
-import axios from "axios";
-import { Store } from "../utils/Store";
-import Cookies from "js-cookie";
 import { Controller, useForm } from "react-hook-form";
+import Store from "../utils/Store";
+// import toast from "react-hot-toast";
+// import firebase from "firebase/compat/app";
+import Cookies from "js-cookie";
 import { useSnackbar } from "notistack";
-import getError from "../utils/error";
+// import axios from "axios";
 
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { firestore } from "../component/firebase/firebaseClient";
+import firebase from "firebase/compat/app";
+import { auth } from "../component/firebase/firebaseClient";
+//
 export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const classes = useStyles();
   const router = useRouter();
-  const { state, dispatch } = useContext(Store);
-  const { userInfo } = state;
-  useEffect(() => {
-    if (userInfo) {
-      router.push("/");
-    }
-  }, []);
+  const { redirect } = router.query; // login?redirect=/payments
+  // const { state, dispatch } = useContext(Store);
+  // const { userInfo } = state;
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     router.push("/");
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-  const { redirect } = router.query; //login?redirect=/shipping
-  const submitHandler = async (
-    name,
-    email,
-    password,
-    confirmPassword,
-    phone
-  ) => {
+  const classes = useStyles();
+  const submitHandler = async ({ name, email, password, tel }) => {
     closeSnackbar();
-    if (password !== confirmPassword) {
-      enqueueSnackbar("Password don't match", { variant: "error" });
-      return;
-    }
     try {
-      const { data } = await axios.post("/api/users/register", {
-        name,
-        email,
-        phone,
-        password,
+      const userDoc = firestore.doc(`users/${auth.currentUser.uid}`);
+      const batch = firestore.batch();
+      batch.set(userDoc, {
+        name: name,
+        id: auth.currentUser.uid,
+        email: email.toString().trim(),
+        tel: tel,
+        password: password,
+        provider: auth.currentUser.providerData[0].providerId,
       });
-      dispatch({ type: "USER_LOGIN", payload: data }); //needs db
-      Cookies.set("userInfo", data);
-      router.push(redirect || "/");
-      alert("success login");
+
+      // dispatch({ type: "USER_LOGIN", payload: data });
+      // Cookies.set("userInfo", data);
+      // router.push(redirect || "/");
     } catch (err) {
-      enqueueSnackbar(getError(err), { variant: "error" });
+      // enqueueSnackbar(
+      //   err.response.data ? err.response.data.message : err.message,
+      //   { variant: "error" }
+      // );
     }
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
   };
   return (
     <Layout title="Register">
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
+        {/* <form className={classes.form}> */}
         <Typography component="h1" variant="h1">
           Register
         </Typography>
@@ -115,6 +135,8 @@ export default function Register() {
                   fullWidth
                   id="email"
                   label="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   inputProps={{ type: "email" }}
                   error={Boolean(errors.email)}
                   helperText={
@@ -153,6 +175,8 @@ export default function Register() {
                   fullWidth
                   id="password"
                   label="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   inputProps={{ type: "password" }}
                   error={Boolean(errors.password)}
                   helperText={
@@ -204,7 +228,19 @@ export default function Register() {
               type="submit"
               fullWidth
               color="primary"
-              onClick={submitHandler}
+              onClick={async () => {
+                createUserWithEmailAndPassword(auth, email, password);
+                // await firebase
+                //   .auth()
+                //   .createUserWithEmailAndPassword(email, password)
+                //   .then(function () {
+                //     window.location.href = "/";
+
+                //   })
+                //   .catch(function (error) {
+                //     console.log(error);
+                //   });
+              }}
             >
               Register
             </Button>

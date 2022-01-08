@@ -1,11 +1,14 @@
 import { SnackbarProvider } from "notistack";
 import { useEffect } from "react";
-import "../styles/globals.css";
 import { StoreProvider } from "../utils/Store";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+
+import { Toaster } from "react-hot-toast";
+import { UserContext } from "../component/firebase/context";
+import { useUserData } from "../component/firebase/hooks";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -14,17 +17,25 @@ function MyApp({ Component, pageProps }) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+  //firebase added
+
+  const userData = useUserData();
+
   return (
     <Provider store={store}>
-      <SnackbarProvider
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      >
-        <StoreProvider>
-          <PayPalScriptProvider deferLoading={true}>
-            <Component {...pageProps} />
-          </PayPalScriptProvider>
-        </StoreProvider>
-      </SnackbarProvider>
+      <UserContext.Provider value={{ userData }}>
+        <SnackbarProvider
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <StoreProvider>
+            <PayPalScriptProvider deferLoading={true}>
+              {/*Added for User Auth */}
+              <Component {...pageProps} />
+              <Toaster /> {/*added Toaster same as Snackbar */}
+            </PayPalScriptProvider>
+          </StoreProvider>
+        </SnackbarProvider>
+      </UserContext.Provider>
     </Provider>
   );
 }

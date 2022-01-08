@@ -15,18 +15,30 @@ const firebaseConfig = {
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
-  if (typeof window !== "undefined") {
-    if ("measurementID" in firebaseConfig) {
-      firebase.analytics();
-      firebase.performance();
-    }
-  }
 }
 
+//auth exports
 export const auth = firebase.auth();
 export const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
+//Firestore Exports
 export const firestore = firebase.firestore();
-export const storage = firebase.storage();
+export const serverTimestamp = firebase.firestore.FieldValue.serverTimestamp;
+export const fromMillis = firebase.firestore.Timestamp.fromMillis;
+export const increment = firebase.firestore.FieldValue.increment;
 
-export default firebase;
+// Storage exports
+export const storage = firebase.storage();
+export const STATE_CHANGED = firebase.storage.TaskEvent.STATE_CHANGED;
+
+/**`
+ * Converts a firestore document to JSON
+ * @param  {DocumentSnapshot} doc
+ */
+export function postToJSON(doc) {
+  const data = doc.data();
+  return {
+    ...data,
+    // Gotcha! firestore timestamp NOT serializable to JSON. Must convert to milliseconds
+  };
+}

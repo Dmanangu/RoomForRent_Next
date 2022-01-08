@@ -6,61 +6,73 @@ import {
   Button,
   Link,
 } from "@material-ui/core";
-import axios from "axios";
-import { useRouter } from "next/router";
-import NextLink from "next/link";
-import React, { useContext, useEffect } from "react";
-import Layout from "../component/Layout";
-import { Store } from "../utils/Store";
-import useStyles from "../utils/style";
-import Cookies from "js-cookie";
-import { Controller, useForm } from "react-hook-form";
-import { useSnackbar } from "notistack";
-import { auth, googleAuthProvider } from "../database/firebase";
+
 import googleIcon from "../public/images/google-icon.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import NextLink from "next/link";
+import React, { useState } from "react";
+//useContext, useEffect,
+import Layout from "../component/Layout";
+import useStyles from "../utils/style";
+import { Controller, useForm } from "react-hook-form";
+// import { useSnackbar } from "notistack";
+// import { Store } from "../utils/Store";
+// import axios from "axios";
+// import Cookies from "js-cookie";
+//firebase import
+
+//firebase import
+import {
+  auth,
+  googleAuthProvider,
+  firestore,
+} from "../component/firebase/firebaseClient";
 
 export default function Login() {
   const {
-    handleSubmit,
+    // handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  // const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const router = useRouter();
   const { redirect } = router.query; // login?redirect=/payments
-  const { state, dispatch } = useContext(Store);
-  const { userInfo } = state;
-  useEffect(() => {
-    if (userInfo) {
-      router.push("/");
-    }
-  }, []);
+  // const { state, dispatch } = useContext(Store);
+  // const { userInfo } = state;
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     router.push("/");
+  //   }
+  // }, []);
 
   const classes = useStyles();
-  const submitHandler = async ({ email, password }) => {
-    closeSnackbar();
-    try {
-      const { data } = await axios.post("/api/users/login", {
-        email,
-        password,
-      });
-      dispatch({ type: "USER_LOGIN", payload: data });
-      Cookies.set("userInfo", data);
-      router.push(redirect || "/");
-    } catch (err) {
-      enqueueSnackbar(
-        err.response.data ? err.response.data.message : err.message,
-        { variant: "error" }
-      );
-    }
-  };
-  const user = null;
-  const username = null;
+  // const submitHandler = async ({ email, password }) => {
+  //   closeSnackbar();
+  //   try {
+  //     const { data } = await axios.post("/api/users/login", {
+  //       email,
+  //       password,
+  //     });
+  //     dispatch({ type: "USER_LOGIN", payload: data });
+  //     Cookies.set("userInfo", data);
+  //     router.push(redirect || "/");
+  //   } catch (err) {
+  //     enqueueSnackbar(
+  //       err.response.data ? err.response.data.message : err.message,
+  //       { variant: "error" }
+  //     );
+  //   }
+  // };
+
+  //firebase usage
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <Layout title="Login">
-      <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
+      {/*<form onSubmit={handleSubmit(submitHandler)} className={classes.form}>*/}
+      <form className={classes.form}>
         <Typography component="h1" variant="h1">
           Login
         </Typography>
@@ -80,6 +92,8 @@ export default function Login() {
                   fullWidth
                   id="email"
                   label="Email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
                   inputProps={{ type: "email" }}
                   error={Boolean(errors.email)}
                   helperText={
@@ -107,6 +121,8 @@ export default function Login() {
                 <TextField
                   variant="outlined"
                   fullWidth
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
                   id="password"
                   label="Password"
                   inputProps={{ type: "password" }}
@@ -124,7 +140,15 @@ export default function Login() {
             ></Controller>
           </ListItem>
           <ListItem>
-            <Button variant="contained" type="submit" fullWidth color="primary">
+            <Button
+              variant="contained"
+              type="submit"
+              fullWidth
+              color="primary"
+              // onClick={async () => {
+              //   signInUserWithEmailAndPassword(auth, email, password);
+              // }}
+            >
               Login
             </Button>
           </ListItem>
@@ -134,22 +158,38 @@ export default function Login() {
               <Link>Register</Link>
             </NextLink>
           </ListItem>
+          <SignInButton href={"/"} />
         </List>
-        <SignInButton />
       </form>
     </Layout>
   );
 }
 
+//sign In with google
 function SignInButton() {
   const signInWithGoogle = async () => {
     await auth.signInWithPopup(googleAuthProvider);
-  };
+    // Create refs for both documents
+    const userDoc = firestore.doc(`users/${auth.currentUser.uid}`);
+    //const usernameDoc = firestore.doc(usernames/${formValue});
 
+    // Commit both docs together as a batch write.
+    const batch = firestore.batch();
+    batch.set(userDoc, {
+      name: auth.currentUser.displayName,
+      id: auth.currentUser.uid,
+      email: auth.currentUser.email,
+    });
+    //batch.set(usernameDoc, { uid: user.uid });
+    if (!userDoc) {
+      throw new Error("There was an error in Login");
+    }
+    await batch.commit();
+  };
   return (
-    <Button onClick={signInWithGoogle} variant="outlined">
-      <Image src={googleIcon} alt="no image" height={30} width={30} />
-      Sign in with Google{" "}
+    <Button onClick={signInWithGoogle} variant="contained">
+      <Image src={googleIcon} height={50} width={50} alt="google icon" /> Sign
+      in with Google
     </Button>
   );
 }
