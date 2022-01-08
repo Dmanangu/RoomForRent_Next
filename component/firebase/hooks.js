@@ -1,4 +1,4 @@
-import { auth, firestore } from "./firebaseClient";
+import { auth, firestore, postToJSON } from "./firebaseClient";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
@@ -24,4 +24,25 @@ export function useUserData() {
   }, [user]);
 
   return { user, email };
+}
+
+export async function useRentalsData() {
+  const postsQuery = firestore.collectionGroup("rents");
+
+  const rentalProperties = await postsQuery.get().docs.map(postToJSON);
+
+  console.log("RENTTTTTTTTTTTTTTTTTTTTT");
+  console.log(rentalProperties);
+  console.log("RENTTTTTTTTTTTTTTTTTTTTT");
+
+  return { rentalProperties };
+}
+
+export async function getServerSideProps() {
+  const postsQuery = firestore.collectionGroup("rents");
+  const posts = (await postsQuery.get()).docs.map(postToJSON);
+
+  return {
+    props: { posts },
+  };
 }
