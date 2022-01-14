@@ -52,7 +52,7 @@ const useStyles = makeStyles({
     borderRadius: 20,
   },
   main: {
-    minHeight: "85vh", //updated this so that the footer stays at the lowest middle part
+    minHeight: "65vh", //updated this so that the footer stays at the lowest middle part
     minWidth: "80vw",
     maxWidth: "100%",
   },

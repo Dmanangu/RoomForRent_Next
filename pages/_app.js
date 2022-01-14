@@ -22,8 +22,8 @@ function MyApp({ Component, pageProps }) {
   const userData = useUserData();
 
   return (
-    <Provider store={store}>
-      <UserContext.Provider value={{ userData }}>
+    <UserContext.Provider value={{ userData }}>
+      <Provider store={store}>
         <SnackbarProvider
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
         >
@@ -35,8 +35,8 @@ function MyApp({ Component, pageProps }) {
             </PayPalScriptProvider>
           </StoreProvider>
         </SnackbarProvider>
-      </UserContext.Provider>
-    </Provider>
+      </Provider>
+    </UserContext.Provider>
   );
 }
 

@@ -18,9 +18,10 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 import { auth } from "../component/firebase/firebaseClient";
 import { UserContext } from "../component/firebase/context";
+import { getAuth, signOut } from "firebase/auth";
 
 function Layout({ children }) {
-  const { user, username } = useContext(UserContext); //user
+  const { user } = useContext(UserContext); //user
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState(null);
   const loginClickHandler = (e) => {
@@ -29,12 +30,16 @@ function Layout({ children }) {
   const loginMenuCloseHandler = (e, redirect) => {
     setAnchorEl(null);
     if (redirect) {
-      router.push(redirect);
+      router.push(e, redirect);
     }
   };
+  const auth = getAuth();
   const logoutClickHandler = () => {
     setAnchorEl(null);
-    Cookies.remove(username);
+    signOut(auth).then(() => {
+      //Sign out
+    });
+    Cookies.remove(user);
     router.push("/");
   };
   const classes = useStyles();
@@ -69,7 +74,7 @@ function Layout({ children }) {
             </Link>
           </NextLink>
           {/* This change Login button into the user Name  */}
-          {user ? (
+          {user != null ? (
             <>
               <Button
                 aria-controls="simple-menu"
@@ -77,7 +82,7 @@ function Layout({ children }) {
                 onClick={loginClickHandler}
                 className={classes.navbarButton}
               >
-                {username}
+                {user.name}
               </Button>
               <Menu
                 id="simple-menu"
@@ -89,6 +94,15 @@ function Layout({ children }) {
                 {/* <MenuItem onClick={(e) => loginMenuCloseHandler(e, "/profile")}>
                   Profile
                 </MenuItem> */}
+                {user.isAdmin && (
+                  <MenuItem
+                    onClick={(e) =>
+                      loginMenuCloseHandler(e, "/admin/dashboard")
+                    }
+                  >
+                    Admin Dashboard
+                  </MenuItem>
+                )}
                 <MenuItem onClick={logoutClickHandler}>
                   <SignOutButton />
                 </MenuItem>
