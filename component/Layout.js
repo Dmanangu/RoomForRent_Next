@@ -43,12 +43,13 @@ function Layout({ children }) {
     router.push("/");
   };
   const classes = useStyles();
+
   return (
     <div>
       <Head>
         <title>Room For Rent</title>
       </Head>
-      <AppBar position="static" className={classes.navbar}>
+      <AppBar className={classes.navbar} position="absolute">
         <Toolbar className={classes.grow}>
           <Typography className={classes.title}>Room For Rent</Typography>
           <div className={classes.grow}></div>

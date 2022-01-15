@@ -5,14 +5,14 @@ const useStyles = makeStyles({
     backgroundColor: "#0f7db0",
     "& a": {
       color: "#ffffff",
-      marginLeft: 80,
+      marginLeft: 10,
     },
   },
   nav: {
     backgroundColor: "Black",
     "& a": {
       color: "#ffffff",
-      marginLeft: 80,
+      marginLeft: 10,
     },
   },
   splitScreen: {
@@ -53,7 +53,7 @@ const useStyles = makeStyles({
   },
   main: {
     minHeight: "65vh", //updated this so that the footer stays at the lowest middle part
-    minWidth: "80vw",
+    minWidth: "90vw",
     maxWidth: "100%",
   },
   footer: {
